@@ -1,9 +1,9 @@
 class BookItem():
 
-    def __init__(self, title, author, genre, price, stock_count):
+    def __init__(self, title, author, isbn, price, stock_count):
         self.title = title
         self.author = author
-        self.genre = genre
+        self.isbn = isbn
         self.price = price
         self.stock_count = stock_count
 
@@ -19,7 +19,4 @@ class BookItem():
     def set_stock():
         pass
 
-book1 = BookItem("My book", "Nicole Hall", "Self help", 40, 30)
-
-# print(book1.__dict__)
-print(BookItem.__module__)
+    
