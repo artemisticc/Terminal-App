@@ -5,7 +5,7 @@ from simple_term_menu import TerminalMenu
 from os import system
 import shelve
 
-
+# with shelve.open('catalogue.db', '')
 # main program
 # options = ["Catalogue list", "Search catalogue", "Create entry", "Remove entry", "Modify entry", "Exit"]
 
@@ -23,15 +23,40 @@ def modify_menu():
     option = modify_options[menu_entry_index]
     return option
 
-# def list_books():
-#     pass
+def catalogue_list():
+    pass
 
-# def search_catalogue():
-#     pass
+def search_catalogue():
+    pass
 
 def create_entry():
-    pass
-    Book.create_book()
+    x = Book()
+    while True:
+        try:
+            how_many = int(input("How many books would you like to add? "))
+        except ValueError:
+            print("Your answer must be a whole number.")
+        else:
+            break
+
+    for item in range(how_many):
+            print("Enter details for Book {}".format(item+1))
+            x.add_title(input("Title: "))
+            x.add_author(input("Author: "))
+            while True:
+                try:
+                    x.add_price(float(input("Price (in $): ")))
+                except(ValueError): 
+                    print("This needs to be a number.")
+                else:
+                    break
+            while True:
+                try:
+                    x.add_stock_count(int(input("Stock count: ")))
+                except(ValueError): 
+                    print("This needs to be a number.")
+                else:
+                    break
 
 
 def remove_entry():
@@ -59,29 +84,28 @@ def modify_entry():
 
 
 
-
-
-while option != "Exit":
+def main_progam():
     option = ""
-    option = main_menu()
-    if option == "Catalogue list":
-        print("test")
-    elif option == "Search catalogue":
-        pass
-        # catalogue.display_catalogue()
-    elif option == "Create entry":
-        create_entry()
-    elif option == "Remove entry":
-        remove_entry()
-    elif option == "Modify entry":
-        modify_entry()
-    elif option == "Exit":
-        continue
-    else:
-        print("I don't know how you managed to pick something that doesn't exist, but it's not valid, so try again")
+    while option != "Exit":
+            option = main_menu()
+            if option == "Catalogue list":
+                catalogue_list()
+            elif option == "Search catalogue":
+                pass
+                # catalogue.display_catalogue()
+            elif option == "Create entry":
+                create_entry()
+            elif option == "Remove entry":
+                remove_entry()
+            elif option == "Modify entry":
+                modify_entry()
+            elif option == "Exit":
+                continue
+            else:
+                print("I don't know how you managed to pick something that doesn't exist, but it's not valid, so try again")
 
 print("Success!")
-my_data_file.close()
+# my_data_file.close()
 # save to json file here
 
 
