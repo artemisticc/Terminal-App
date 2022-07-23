@@ -91,8 +91,7 @@ def main_progam():
             if option == "Catalogue list":
                 catalogue_list()
             elif option == "Search catalogue":
-                pass
-                # catalogue.display_catalogue()
+                search_catalogue()
             elif option == "Create entry":
                 create_entry()
             elif option == "Remove entry":
