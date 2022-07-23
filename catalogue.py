@@ -1,15 +1,19 @@
 from book_class import Book
 
 class Catalogue():
-    def __init__(self, book_item):
-        self.book_item = book_item
+    def __init__(self, book_list):
+        self.book_list = book_list
 
-    def add_cata(self, title):
-        add_book = BookItem(title)
-        self.catalogue_list.append()
+    def add_cata(self):
+        pass
+        # adds book to catalogue list
 
-    def rm_cata(self, title):
-        for book in
-        rm_book = BookItem(title)
+    def rm_cata(self):
+        # removes book from catalogue list
+        pass
+
+    def show_cata(self):
+        pass
+        # displays catalogue
 
 
