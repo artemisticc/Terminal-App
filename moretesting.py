@@ -61,6 +61,34 @@ class Book:
     def show_stock_count(self):
         return self.stock_count
 
+while True:
+    try:
+        how_many = int(input("How many books would you like to add? "))
+    except ValueError:
+        print("Your answer must be a whole number.")
+    else:
+        break
 
+x = Book()
+
+for item in range(how_many):
+        print("Enter details for Book {}".format(item+1))
+        x.add_title(input("Title: "))
+        x.add_author(input("Author: "))
+        while True:
+            try:
+                x.add_price(float(input("Price (in $): ")))
+            except(ValueError): 
+                print("This needs to be a number.")
+            else:
+                break
+        while True:
+            try:
+                x.add_stock_count(int(input("Stock count: ")))
+            except(ValueError): 
+                print("This needs to be a number.")
+            else:
+                break
 
 print(x.__dict__)
+print(x)
