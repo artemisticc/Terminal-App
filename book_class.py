@@ -1,4 +1,4 @@
-class BookItem():
+class Book():
 
     def __init__(self, title, author, isbn, price, stock_count):
         self.title = title

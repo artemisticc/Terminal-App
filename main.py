@@ -1,23 +1,26 @@
 from itertools import groupby
-from book_item import BookItem
+from book_class import Book
 from simple_term_menu import TerminalMenu
-
-from program.catalogue import Catalogue
+from os import system
 
 
 
 # main program
+# options = ["Catalogue list", "Search catalogue", "Create entry", "Remove entry", "Modify entry", "Exit"]
+
 def option_menu():
-    options = ["List books (by title)", "Search catalogue", "Create entry", "Remove entry", "Modify entry", "Exit"]
+    options = ["Catalogue list", "Search catalogue", "Create entry", "Remove entry", "Modify entry", "Exit"]
     terminal_menu = TerminalMenu(options)
     menu_entry_index = terminal_menu.show()
-    # print(f"Searching for books using '{options[menu_entry_index]}'.")
+    option = options[menu_entry_index]
+    return option
 
-def list_books():
-    pass
 
-def search_catalogue():
-    pass
+# def list_books():
+#     pass
+
+# def search_catalogue():
+#     pass
 
 def create_entry():
     pass
@@ -30,23 +33,28 @@ def modify_entry():
 
 
 
-options = ""
+option = ""
 
-while options != "Exit":
+while option != "Exit":
     option = option_menu()
-    if option == "List books (by title)":
-        pass
+    if option == "Catalogue list":
+        print("test")
     elif option == "Search catalogue":
         pass
+        # catalogue.display_catalogue()
     elif option == "Create entry":
-        pass
+        create_entry()
     elif option == "Remove entry":
-        pass
-    elif option == "Modify":
-        pass
+        remove_entry()
+    elif option == "Modify entry":
+        modify_entry()
     elif option == "Exit":
         continue
     else:
         print("Not a valid option, try again")
 
+print("Success!")
+
 # save to json file here
+
+
