@@ -1,14 +1,14 @@
 from itertools import groupby
 from book_class import Book
-from catalogue import Catalogue
 from simple_term_menu import TerminalMenu
 from os import system
 import shelve
+from tabulate import tabulate
 
 # with shelve.open('catalogue.db', '')
 # main program
 # options = ["Catalogue list", "Search catalogue", "Create entry", "Remove entry", "Modify entry", "Exit"]
-
+catalogue = [["Title","Author", "Price($)", "Stock"]]
 def main_menu():
     options = ["Catalogue list", "Search catalogue", "Create entry", "Remove entry", "Modify entry", "Exit"]
     terminal_menu = TerminalMenu(options)
@@ -24,13 +24,12 @@ def modify_menu():
     return option
 
 def catalogue_list():
-    pass
+    print(tabulate(catalogue, headers='firstrow', showindex='always', tablefmt='fancy_grid'))
 
 def search_catalogue():
     pass
 
 def create_entry():
-    x = Book()
     while True:
         try:
             how_many = int(input("How many books would you like to add? "))
@@ -41,22 +40,10 @@ def create_entry():
 
     for item in range(how_many):
             print("Enter details for Book {}".format(item+1))
-            x.add_title(input("Title: "))
-            x.add_author(input("Author: "))
-            while True:
-                try:
-                    x.add_price(float(input("Price (in $): ")))
-                except(ValueError): 
-                    print("This needs to be a number.")
-                else:
-                    break
-            while True:
-                try:
-                    x.add_stock_count(int(input("Stock count: ")))
-                except(ValueError): 
-                    print("This needs to be a number.")
-                else:
-                    break
+            b = Book()
+            catalogue.append([b.title, b.author, b.price, b.stock_count])
+            print("Entry created. \n", b.__dict__)
+    
 
 
 def remove_entry():
@@ -84,7 +71,7 @@ def modify_entry():
 
 
 
-def main_progam():
+def main_program():
     option = ""
     while option != "Exit":
             option = main_menu()
@@ -103,6 +90,7 @@ def main_progam():
             else:
                 print("I don't know how you managed to pick something that doesn't exist, but it's not valid, so try again")
 
+main_program()
 print("Success!")
 # my_data_file.close()
 # save to json file here

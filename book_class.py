@@ -1,10 +1,33 @@
 class Book():
-
-    def __init__(self, title, author, price, stock_count):
-        self.title = title
-        self.author = author
-        self.price = price
-        self.stock_count = stock_count
+    def __init__(self, title = None, author = None, price = None, stock_count = None):
+        if not title:
+            self.title = input("Title: ")
+        else:
+            self.title = title
+        if not author:
+            self.author = input("Author: ")
+        else:
+            self.author = author
+        if not price:
+            while True:
+                    try:
+                        self.price = float(input("Price: "))
+                    except(ValueError): 
+                        print("This needs to be a number.")
+                    else:
+                        break
+        else:
+            self.price = price
+        if not stock_count:
+            while True:
+                try:
+                    self.stock_count = int(input("Stock count: "))
+                except(ValueError): 
+                    print("This needs to be a number.")
+                else:
+                    break
+        else:
+            self.stock_count = stock_count
 
     def get_title(self):
         return self.title
@@ -12,42 +35,30 @@ class Book():
     def get_author(self):
         return self.author
 
-    def get_genre(self):
-        return self.genre
+    def get_price(self):
+        return self.price
 
-    def set_stock():
-        pass
+    def get_stock(self):
+        return self.stock_count
 
-    def create_book(title, author, price, stock_count):
-        x = input("What do you want to call this entry?")
-        x = Book(title, author, price, stock_count)
-        catalogue.append(x)
-        title_list.append(title)
-        author_list.append(author)
-        price_list.append(price)
-        stock_count_list.append(stock_count)
-        return x
+    # def set_title(self, title, title_value):
+    #     setattr(self, title, title_value)
 
+    # def set_author(self, author, author_value):
+    #     setattr(self, author, author_value)
 
+    # def set_price(self, price, price_value):
+    #     setattr(self, price, price_value)
 
-title_list = []
-author_list = []
-price_list = []
-stock_count_list = []
+    # def set_stock(self, stock_count, stock_value):
+    #     setattr(self, stock_count, stock_value)
 
-lists = [title_list, author_list, price_list, stock_count_list]
-catalogue = []
+# def add_book(title, author, price, stock_count):
+#     title = input("Title: ")
+#     author = input("Author: ")
+#     price = float(input("Price (in $): "))
+#     stock_count = int(input("Stock count: "))
+#     new_book = Book(title, author, price, stock_count)
 
-Book.create_book("fuck you", "fuck off", 55, 51)
-Book.create_book("fuck you", "fuck off", 55, 52)
-Book.create_book("fuck you", "fuck off", 55, 53)
-
-print(catalogue)
-print(lists)
-
-
-# def any(iterable):
-#     for element in iterable:
-#         if element:
-#             return True
-#     return False
+# b = Book()
+# print(b.__dict__)

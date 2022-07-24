@@ -30,65 +30,105 @@
 # for group in getMatches(people, "age"):
 #     print [people.name for people in group]
 
-class Book:
-    def __init__(self):
-        self.title = []
-        self.author = []
-        self.price = []
-        self.stock_count = []
+# class Book:
+#     def __init__(self):
+#         self.title = []
+#         self.author = []
+#         self.price = []
+#         self.stock_count = []
 
-    def add_title(self, title):
-        self.title.append(title)
+#     def add_title(self, title):
+#         self.title.append(title)
 
-    def add_author(self, author):
-        self.author.append(author)
+#     def add_author(self, author):
+#         self.author.append(author)
 
-    def add_price(self, price):
-        self.price.append(price)
+#     def add_price(self, price):
+#         self.price.append(price)
 
-    def add_stock_count(self, stock_count):
-        self.stock_count.append(stock_count)
+#     def add_stock_count(self, stock_count):
+#         self.stock_count.append(stock_count)
 
-    def show_title(self):
-        return self.title
+#     def show_title(self):
+#         return self.title
 
-    def show_author(self):
-        return self.author
+#     def show_author(self):
+#         return self.author
 
-    def show_price(self):
-        return self.price
+#     def show_price(self):
+#         return self.price
 
-    def show_stock_count(self):
-        return self.stock_count
+#     def show_stock_count(self):
+#         return self.stock_count
 
-while True:
-    try:
-        how_many = int(input("How many books would you like to add? "))
-    except ValueError:
-        print("Your answer must be a whole number.")
-    else:
-        break
+# while True:
+#     try:
+#         how_many = int(input("How many books would you like to add? "))
+#     except ValueError:
+#         print("Your answer must be a whole number.")
+#     else:
+#         break
 
-x = Book()
+# x = Book()
 
-for item in range(how_many):
-        print("Enter details for Book {}".format(item+1))
-        x.add_title(input("Title: "))
-        x.add_author(input("Author: "))
-        while True:
-            try:
-                x.add_price(float(input("Price (in $): ")))
-            except(ValueError): 
-                print("This needs to be a number.")
-            else:
-                break
-        while True:
-            try:
-                x.add_stock_count(int(input("Stock count: ")))
-            except(ValueError): 
-                print("This needs to be a number.")
-            else:
-                break
+# for item in range(how_many):
+#         print("Enter details for Book {}".format(item+1))
+#         x.add_title(input("Title: "))
+#         x.add_author(input("Author: "))
+#         while True:
+#             try:
+#                 x.add_price(float(input("Price (in $): ")))
+#             except(ValueError): 
+#                 print("This needs to be a number.")
+#             else:
+#                 break
+#         while True:
+#             try:
+#                 x.add_stock_count(int(input("Stock count: ")))
+#             except(ValueError): 
+#                 print("This needs to be a number.")
+#             else:
+#                 break
 
-print(x.__dict__)
-print(x)
+# print(x.__dict__)
+# print(x)
+
+# class myStruct():
+#     def __init__(self, name, salary, doB, title):
+#         self.name = name
+#         self.salary = salary
+#         self.doB = doB
+#         self.title = title
+
+
+# name = input('Enter name: ')
+# salary = input('Enter salary: ')
+# doB = input('Enter doB: ')
+# title = input('Enter title: ')
+
+# new_object = myStruct(name, salary, doB, title)
+
+# print(new_object.__dict__)
+
+class Book():
+    def __init__(self,title=None,author=None,price=None,stock_count=None):
+        if not title:
+            self.title = input('Enter title: ')
+        else:
+            self.title = title
+        if not author:
+            self.author = input('Enter author: ')
+        else:
+            self.author = author
+        if not price:
+            self.price = input('Enter price: ')
+        else:
+            self.price = price
+        if not stock_count:
+            self.stock_count = input('Enter stock: ')
+        else:
+            self.stock_count = stock_count
+
+test = Book()
+
+print(test.__dict__)
