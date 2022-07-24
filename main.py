@@ -7,8 +7,8 @@ from tabulate import tabulate
 
 # with shelve.open('catalogue.db', '')
 # main program
-# options = ["Catalogue list", "Search catalogue", "Create entry", "Remove entry", "Modify entry", "Exit"]
-catalogue = [["Title","Author", "Price($)", "Stock"]]
+
+
 def main_menu():
     options = ["Catalogue list", "Search catalogue", "Create entry", "Remove entry", "Modify entry", "Exit"]
     terminal_menu = TerminalMenu(options)
@@ -23,11 +23,16 @@ def modify_menu():
     option = modify_options[menu_entry_index]
     return option
 
+catalogue = [["Title","Author", "Price($)", "Stock"]]
+catalogue_objects = []
+
 def catalogue_list():
     print(tabulate(catalogue, headers='firstrow', showindex='always', tablefmt='fancy_grid'))
 
+
 def search_catalogue():
     pass
+
 
 def create_entry():
     while True:
@@ -43,11 +48,14 @@ def create_entry():
             b = Book()
             catalogue.append([b.title, b.author, b.price, b.stock_count])
             print("Entry created. \n", b.__dict__)
-    
 
 
 def remove_entry():
     pass
+# what is the title of the book you would like to remove
+# check objects for matching attribute
+# remove from catalogue?
+# delete object
 
 
 

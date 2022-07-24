@@ -110,25 +110,10 @@
 
 # print(new_object.__dict__)
 
-class Book():
-    def __init__(self,title=None,author=None,price=None,stock_count=None):
-        if not title:
-            self.title = input('Enter title: ')
-        else:
-            self.title = title
-        if not author:
-            self.author = input('Enter author: ')
-        else:
-            self.author = author
-        if not price:
-            self.price = input('Enter price: ')
-        else:
-            self.price = price
-        if not stock_count:
-            self.stock_count = input('Enter stock: ')
-        else:
-            self.stock_count = stock_count
+for x in test_list:
+    if getattr(x, x.fieldMemberName) == value
+        print("i found it!")
+        break
+else:
+    x = None
 
-test = Book()
-
-print(test.__dict__)

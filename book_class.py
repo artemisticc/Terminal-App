@@ -1,11 +1,27 @@
 class Book():
     def __init__(self, title = None, author = None, price = None, stock_count = None):
         if not title:
-            self.title = input("Title: ")
+            while True:
+                try:
+                    self.title = input("Title: ")
+                    if not self.title:
+                        raise ValueError("empty")
+                except ValueError: 
+                    print("This can't be left blank.")
+                else:
+                    break
         else:
             self.title = title
         if not author:
-            self.author = input("Author: ")
+            while True:
+                try:
+                    self.author = input("Author: ")
+                    if not self.author:
+                        raise ValueError("empty")
+                except ValueError: 
+                    print("This can't be left blank.")
+                else:
+                    break
         else:
             self.author = author
         if not price:
