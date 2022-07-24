@@ -35,22 +35,45 @@ def search_menu():
 
 catalogue = [["Title","Author", "Price($)", "Stock"]]
 catalogue_objects = []
+catalogue_actual_objects = []
+list_of_matching_titles = [["Title","Author", "Price($)", "Stock"]]
 
 def catalogue_list():
     print(tabulate(catalogue, headers='firstrow', showindex='always', tablefmt='fancy_grid'))
     print(catalogue_objects)
+    _index_list()
+    print(_index_list())
 
+def _index_list():
+    return list(enumerate(catalogue_objects))
+
+def _search_title():
+    title_var = input("What title are you looking for? ")
+    n = 0
+    for item in catalogue_objects:
+        if item["title"] == title_var:
+            n += 1
+    if n == 1:
+        print("There is " + str(n) + " book with this title in the system.")
+    else:
+        print("There are " + str(n) + " books with this title in the system.")
+
+def _search_author():
+    author_var = input("What author are you looking for? ")
+    n = 0
+    for item in catalogue_objects:
+        if item["author"] == author_var:
+            n += 1
+    print("There are " + str(n) + " books with this author in the system.")
 
 def search_catalogue():
     search = ""
     while search != "Exit":
         search = search_menu()
         if search == "Title":
-            search_title = [book for book in catalogue_objects if Book.title == input("What is the title of the book you're searching for? ")]
-            for book in search_title:
-                print(Book.author, Book.price, Book.stock_count)
+            _search_title()
         elif search == "Author":
-            pass
+            _search_author()
         elif search == "Exit":
             continue
         else:
@@ -70,9 +93,10 @@ def create_entry():
             print("Enter details for Book {}".format(item+1))
             b = Book()
             catalogue.append([b.title, b.author, b.price, b.stock_count])
-            catalogue_objects.append(Book(b.title, b.author, b.price, b.stock_count))
+            catalogue_objects.append(b.__dict__)
+            catalogue_actual_objects.append(b)
             print("Entry created. \n", b.__dict__)
-            print(catalogue_objects)
+
 
 
 def remove_entry():

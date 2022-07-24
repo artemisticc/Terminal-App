@@ -110,6 +110,43 @@
 
 # print(new_object.__dict__)
 
-from book_class import Book
+from itertools import groupby
+from operator import itemgetter
 
-catalogue_list
+# dictionary
+catalogue_objects = [
+    {'title': 'book_1', 'author': 'beck', 'x': 'y_1'},
+    {'title': 'book_2', 'author': 'hill', 'x': 'y_1'},
+    {'title': 'book_3', 'author': 'anh', 'x': 'y_1'},
+    {'title': 'book_4', 'author': 'anh', 'x': 'y_1'},
+    {'title': 'book_5', 'author': 'hill', 'x': 'y_1'},
+    {'title': 'book_6', 'author': 'anh', 'x': 'y_1'},
+    {'title': 'book_7', 'author': 'beck', 'x': 'y_1'},
+    {'title': 'book_8', 'author': 'hill', 'x': 'y_1'},
+    {'title': 'book_9', 'author': 'beck', 'x': 'y_1'}
+]
+
+
+# # define a fuction for key
+# # def sort_func(k):
+# #     return k['author']
+
+# # sort INFO data by 'author' key.
+# INFO = sorted(catalogue_objects, key = itemgetter('author'))
+# matching_title = []
+
+# def get_title():
+#     for key, value in groupby(INFO, key = itemgetter('author')):
+#         matching_title.append((key(list(value))))
+
+# get_title()
+# print(matching_title)
+# # print(INFO)
+
+list = [{'a': 1, 'b': 2}, {'c': 3, 'd': 4}, {'e': 5, 'f': 6}]
+print(list[1]['d'])
+
+var = 1
+
+for item in list:
+    if 
