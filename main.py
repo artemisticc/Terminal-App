@@ -68,9 +68,8 @@ def _search_author():
         print("There is " + str(n) + " book with this author in the system.")
     else:
         print("There are " + str(n) + " books with this author in the system.")
-    #     x = list(filter(lambda item: item["author"] == author_var, catalogue_objects))
-    # print(tabulate(x, headers="firstrow", showindex="always", tablefmt="fancy_grid"))
-    
+    x = list(filter(lambda item: item["author"] == author_var, catalogue_objects))
+    print(x)    
 
 def search_catalogue():
     search = ""
