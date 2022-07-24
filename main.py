@@ -35,11 +35,9 @@ def search_menu():
 
 catalogue = [["Title","Author", "Price($)", "Stock"]]
 catalogue_objects = []
-catalogue_actual_objects = []
-list_of_matching_titles = [["Title","Author", "Price($)", "Stock"]]
 
 def catalogue_list():
-    print(tabulate(catalogue, headers='firstrow', showindex='always', tablefmt='fancy_grid'))
+    print(tabulate(catalogue, headers="firstrow", showindex="always", tablefmt="fancy_grid"))
     print(catalogue_objects)
     _index_list()
     print(_index_list())
@@ -57,6 +55,8 @@ def _search_title():
         print("There is " + str(n) + " book with this title in the system.")
     else:
         print("There are " + str(n) + " books with this title in the system.")
+    x = list(filter(lambda item: item["title"] == title_var, catalogue_objects))
+    print(x)
 
 def _search_author():
     author_var = input("What author are you looking for? ")
@@ -64,7 +64,13 @@ def _search_author():
     for item in catalogue_objects:
         if item["author"] == author_var:
             n += 1
-    print("There are " + str(n) + " books with this author in the system.")
+    if n == 1:
+        print("There is " + str(n) + " book with this author in the system.")
+    else:
+        print("There are " + str(n) + " books with this author in the system.")
+    #     x = list(filter(lambda item: item["author"] == author_var, catalogue_objects))
+    # print(tabulate(x, headers="firstrow", showindex="always", tablefmt="fancy_grid"))
+    
 
 def search_catalogue():
     search = ""
@@ -94,7 +100,7 @@ def create_entry():
             b = Book()
             catalogue.append([b.title, b.author, b.price, b.stock_count])
             catalogue_objects.append(b.__dict__)
-            catalogue_actual_objects.append(b)
+            # catalogue_actual_objects.append(b)
             print("Entry created. \n", b.__dict__)
 
 

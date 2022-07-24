@@ -132,5 +132,6 @@ catalogue_objects = [
 # #     return k['author']
 
 # # sort INFO data by 'author' key.
-x = list(filter(lambda item: item['author'] == 'beck', catalogue_objects))
+my_var = input("what title: ")
+x = list(filter(lambda item: item['author'] == my_var, catalogue_objects))
 print(x)
