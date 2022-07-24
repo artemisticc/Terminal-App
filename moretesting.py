@@ -132,21 +132,5 @@ catalogue_objects = [
 # #     return k['author']
 
 # # sort INFO data by 'author' key.
-# INFO = sorted(catalogue_objects, key = itemgetter('author'))
-# matching_title = []
-
-# def get_title():
-#     for key, value in groupby(INFO, key = itemgetter('author')):
-#         matching_title.append((key(list(value))))
-
-# get_title()
-# print(matching_title)
-# # print(INFO)
-
-list = [{'a': 1, 'b': 2}, {'c': 3, 'd': 4}, {'e': 5, 'f': 6}]
-print(list[1]['d'])
-
-var = 1
-
-for item in list:
-    if 
+x = list(filter(lambda item: item['author'] == 'beck', catalogue_objects))
+print(x)
