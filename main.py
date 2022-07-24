@@ -10,6 +10,7 @@ from tabulate import tabulate
 
 
 def main_menu():
+    print("What would you like to do?")
     options = ["Catalogue list", "Search catalogue", "Create entry", "Remove entry", "Modify entry", "Exit"]
     terminal_menu = TerminalMenu(options)
     menu_entry_index = terminal_menu.show()
@@ -17,7 +18,16 @@ def main_menu():
     return option
 
 def modify_menu():
+    print("What would you like to modify about this entry?")
     modify_options = ["Title", "Author", "Price", "Stock Count", "Exit"]
+    terminal_menu = TerminalMenu(modify_options)
+    menu_entry_index = terminal_menu.show()
+    option = modify_options[menu_entry_index]
+    return option
+
+def search_menu():
+    print("What would you like to search by?")
+    modify_options = ["Title", "Author", "Exit"]
     terminal_menu = TerminalMenu(modify_options)
     menu_entry_index = terminal_menu.show()
     option = modify_options[menu_entry_index]
@@ -28,10 +38,23 @@ catalogue_objects = []
 
 def catalogue_list():
     print(tabulate(catalogue, headers='firstrow', showindex='always', tablefmt='fancy_grid'))
+    print(catalogue_objects)
 
 
 def search_catalogue():
-    pass
+    search = ""
+    while search != "Exit":
+        search = search_menu()
+        if search == "Title":
+            search_title = [book for book in catalogue_objects if Book.title == input("What is the title of the book you're searching for? ")]
+            for book in search_title:
+                print(Book.author, Book.price, Book.stock_count)
+        elif search == "Author":
+            pass
+        elif search == "Exit":
+            continue
+        else:
+            print("Not a valid option, try again")
 
 
 def create_entry():
@@ -47,7 +70,9 @@ def create_entry():
             print("Enter details for Book {}".format(item+1))
             b = Book()
             catalogue.append([b.title, b.author, b.price, b.stock_count])
+            catalogue_objects.append(Book(b.title, b.author, b.price, b.stock_count))
             print("Entry created. \n", b.__dict__)
+            print(catalogue_objects)
 
 
 def remove_entry():
@@ -62,6 +87,7 @@ def remove_entry():
 def modify_entry():
     modify = ""
     while modify != "Exit":
+        search_catalogue()
         modify = modify_menu()
         if modify == "Title":
             print("test")

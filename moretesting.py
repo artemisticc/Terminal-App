@@ -110,10 +110,6 @@
 
 # print(new_object.__dict__)
 
-for x in test_list:
-    if getattr(x, x.fieldMemberName) == value
-        print("i found it!")
-        break
-else:
-    x = None
+from book_class import Book
 
+catalogue_list
