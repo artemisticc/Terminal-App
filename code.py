@@ -29,13 +29,3 @@ from termcolor import colored, cprint
 #     input(colored_message)
 
 # cprint('This is an error', 'red', attrs=['bold'])
-def edit_entry(operation1, operation2):
-    n = _search_title()
-        if n > 1:
-            input("Using the numbers on the left, which book would you like to " + operation1 + "from the system? ")
-        elif n == 1:
-            input("Do you want to permanently remove this book from the system?")
-        else:
-            print("Nothing to remove.")
-
-edit_entry()

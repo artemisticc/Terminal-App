@@ -37,18 +37,16 @@ def search_menu():
     option = modify_options[menu_entry_index]
     return option
 
-def _index_list():
-    return list(enumerate(catalogue_objects))
 
 # functions for main features
 def catalogue_list():
+    tprint("catalogue")
     df = pd.DataFrame(catalogue_objects)
     print(tabulate(df, headers=["Title","Author", "Price($)", "Stock"], tablefmt="fancy_grid"))
-    # print(tabulate(catalogue, headers="firstrow", showindex="always", tablefmt="fancy_grid"))
-    # print(catalogue_objects)
 
 def _search_title():
-    title_var = input("What title are you looking for? ")
+    question = colored("What title are you looking for? ", 'blue')
+    title_var = input(question)
     n = 0
     x = list(filter(lambda item: item["title"] == title_var, catalogue_objects))
     df = pd.DataFrame(x)
@@ -68,7 +66,7 @@ def _search_title():
         return n
 
 def _search_author():
-    question = colored("What author are you looking for? ", 'blue')
+    question = colored("What author are you looking for? ", 'blue', attrs=['bold'])
     author_var = input(question)
     n = 0
     x = list(filter(lambda item: item["author"] == author_var, catalogue_objects))
@@ -111,28 +109,28 @@ def create_entry():
     for item in range(how_many):
             print("Enter details for Book {}".format(item+1))
             b = Book()
-            # catalogue.append([b.title, b.author, b.price, b.stock_count])
             catalogue_objects.append(b.__dict__)
-            # catalogue_actual_objects.append(b)
             print("Entry created. \n", b.__dict__)
 
 def remove_entry():
-    n = _search_title()
-    if n > 1:
-        input("Using the numbers on the left, which book would you like to remove from the system? ")
-    elif n == 1:
-        x = input("Do you want to permanently remove this book from the system? ")
-        # if x 
-    else:
-        cprint("Nothing to remove.", "red", file=sys.stderr)
-
+    catalogue_list()
+    question = colored("Select the entry to remove by typing in the corresponding number in the left-most column: ", 'blue', attrs=['bold'])
+    remove_var = int(input(question))
+    try:
+        del catalogue_objects[remove_var]
+        cprint("Entry has successfully been removed.", "green", attrs=['bold'], file=sys.stderr)
+        catalogue_list()
+    except IndexError: 
+        cprint("Number not found, nothing has been removed.", 'magenta', attrs=['bold'], file=sys.stderr)
 
 
 
 def modify_entry():
+    catalogue_list()
+    question = colored("Select the entry to edit by typing in the corresponding number in the left-most column: ", 'blue', attrs=['bold'])
+    edit_var = int(input(question))
     modify = ""
     while modify != "Exit":
-        
         modify = modify_menu()
         if modify == "Title":
             print("test")
@@ -174,5 +172,5 @@ def main_program():
 
 main_program()
 tprint("goodbye")
-_index_list()
-print(_index_list())
+# _index_list()
+# print(_index_list())

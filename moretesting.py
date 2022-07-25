@@ -26,28 +26,10 @@ catalogue_objects = [
 # x = list(filter(lambda item: item['author'] == my_var, catalogue_objects))
 # print(x)
 
-board_dict = {
-    'Done': {
-        'point': 0.0,
-        'items': 1
-    },
-    'Doing': {
-        'point': 24.0,
-        'items': 3
-    },
-    'New': {
-        'point': 0.0,
-        'items': 2
-    },
-    'Stuck': {
-        'point': 19.0,
-        'items': 3
-    },
-    'Ready to Test': {
-        'point': Decimal('1'),
-        'items': 1
-    }
-}
 
 df = pd.DataFrame(catalogue_objects)
-print(tabulate(df, headers="keys", tablefmt="fancy_grid"))
+# print(tabulate(df, headers="keys", tablefmt="fancy_grid"))
+print(df)
+del catalogue_objects[0]
+df2 = pd.DataFrame(catalogue_objects)
+print(df2)
