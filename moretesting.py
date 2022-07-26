@@ -3,6 +3,7 @@ from operator import itemgetter
 import pandas as pd
 from tabulate import tabulate
 from decimal import Decimal
+from termcolor import colored, cprint
 # dictionary
 catalogue_objects = [
     {'title': 'book_1', 'author': 'beck', 'x': 'y_1'},
@@ -27,9 +28,21 @@ catalogue_objects = [
 # print(x)
 
 
-df = pd.DataFrame(catalogue_objects)
+
 # print(tabulate(df, headers="keys", tablefmt="fancy_grid"))
-print(df)
-del catalogue_objects[0]
+
+# del catalogue_objects[0]
+
+
+def update():
+    title_var = input("Updated title: ")
+    update_title = {"title": title_var}
+    catalogue_objects[9].update(update_title)
+
+df = pd.DataFrame(catalogue_objects)
+cprint("Which book would you like to edit?", "green")
+print(tabulate(df, headers=["Title","Author", "Price($)", "Stock"], tablefmt="fancy_grid"))
+update()
 df2 = pd.DataFrame(catalogue_objects)
-print(df2)
+cprint("Entry updated successfully", "green")
+print(tabulate(df2, headers=["Title","Author", "Price($)", "Stock"], tablefmt="fancy_grid"))

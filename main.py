@@ -6,11 +6,7 @@ from tabulate import tabulate
 from art import *
 import pandas as pd
 
-# with shelve.open('catalogue.db', '')
-# main program
 
-# global variables
-# catalogue = [["Title","Author", "Price($)", "Stock"]]
 catalogue_objects = []
 
 def main_menu():
@@ -129,21 +125,24 @@ def modify_entry():
     catalogue_list()
     question = colored("Select the entry to edit by typing in the corresponding number in the left-most column: ", 'blue', attrs=['bold'])
     edit_var = int(input(question))
-    modify = ""
-    while modify != "Exit":
-        modify = modify_menu()
-        if modify == "Title":
-            print("test")
-        elif modify == "Author":
-            pass
-        elif modify == "Price":
-            pass
-        elif modify == "Stock Count":
-            pass
-        elif modify == "Exit":
-            continue
-        else:
-            cprint("Not a valid option, try again", 'red', attrs=['bold'], file=sys.stderr)
+    try:
+        modify = ""
+        while modify != "Exit":
+            modify = modify_menu()
+            if modify == "Title":
+                print("test")
+            elif modify == "Author":
+                pass
+            elif modify == "Price":
+                pass
+            elif modify == "Stock Count":
+                pass
+            elif modify == "Exit":
+                continue
+            else:
+                cprint("Not a valid option, try again", 'red', attrs=['bold'], file=sys.stderr)
+    except IndexError: 
+        cprint("Number not found, unable to edit.", 'magenta', attrs=['bold'], file=sys.stderr)
 
 
 # main program
