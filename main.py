@@ -37,10 +37,8 @@ def search_menu():
 def _return():
     cprint("Returning to main menu.", 'magenta', attrs=['bold'], file=sys.stderr)
 
-# functions for main features
-def catalogue_list():
-    tprint("catalogue")
-    df = pd.DataFrame(catalogue_objects)
+def _print_df(var):
+    df = pd.DataFrame(var)
     print(tabulate(df, headers=["Title","Author", "Price($)", "Stock"], tablefmt="fancy_grid"))
 
 def _search_title():
@@ -48,17 +46,16 @@ def _search_title():
     title_var = input(question)
     n = 0
     x = list(filter(lambda item: item["title"] == title_var, catalogue_objects))
-    df = pd.DataFrame(x)
     for item in catalogue_objects:
         if item["title"] == title_var:
             n += 1
     if n == 1:
         cprint("There is " + str(n) + " book with this title in the system.", 'green', attrs=['bold'], file=sys.stderr)
-        print(tabulate(df, headers=["Title","Author", "Price($)", "Stock"], tablefmt="fancy_grid"))
+        _print_df(x)
         return n
     elif n > 1:
         cprint("There are " + str(n) + " books with this title in the system.", 'green', attrs=['bold'], file=sys.stderr)
-        print(tabulate(df, headers=["Title","Author", "Price($)", "Stock"], tablefmt="fancy_grid"))
+        _print_df(x)
         return n
     else:
         cprint("There are no books with this title in the system.", 'magenta', attrs=['bold'], file=sys.stderr)
@@ -69,18 +66,25 @@ def _search_author():
     author_var = input(question)
     n = 0
     x = list(filter(lambda item: item["author"] == author_var, catalogue_objects))
-    df = pd.DataFrame(x)
     for item in catalogue_objects:
         if item["author"] == author_var:
             n += 1
     if n == 1:
         cprint("There is " + str(n) + " book with this author in the system.", 'green', attrs=['bold'], file=sys.stderr)
-        print(tabulate(df, headers=["Title","Author", "Price($)", "Stock"], tablefmt="fancy_grid"))
+        _print_df(x)
     elif n > 1:
         cprint("There are " + str(n) + " books with this title in the system.", 'green', attrs=['bold'], file=sys.stderr)
-        print(tabulate(df, headers=["Title","Author", "Price($)", "Stock"], tablefmt="fancy_grid"))
+        _print_df(x)
     else:
         cprint("There are no books with this author in the system.", 'magenta', attrs=['bold'], file=sys.stderr) 
+
+
+# functions for main features
+def catalogue_list():
+    tprint("catalogue")
+    df = pd.DataFrame(catalogue_objects)
+    print(tabulate(df, headers=["Title","Author", "Price($)", "Stock"], tablefmt="fancy_grid"))
+
 
 def search_catalogue():
     search = ""
@@ -111,7 +115,8 @@ def create_entry():
             cprint("Enter details for Book {}".format(item+1), "blue", attrs=["bold"])
             b = Book()
             catalogue_objects.append(b.__dict__)
-            print("Entry created. \n", b.__dict__)
+            print("Entry created. \n")
+            _print_df(catalogue_objects)
 
 def remove_entry():
     catalogue_list()
@@ -122,6 +127,7 @@ def remove_entry():
             del catalogue_objects[remove_var]
             cprint("Entry has successfully been removed.", "green", attrs=['bold'], file=sys.stderr)
             catalogue_list()
+            break
         except IndexError: 
             cprint("Number not found, nothing has been removed.\nLeave space blank if you wish to return to the main menu.", 'magenta', attrs=['bold'], file=sys.stderr)
         except (ValueError, TypeError): 
