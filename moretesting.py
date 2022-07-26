@@ -37,7 +37,7 @@ catalogue_objects = [
 def update():
     title_var = input("Updated title: ")
     update_title = {"title": title_var}
-    catalogue_objects[9].update(update_title)
+    catalogue_objects[title_var].update(update_title)
 
 df = pd.DataFrame(catalogue_objects)
 cprint("Which book would you like to edit?", "green")
@@ -46,3 +46,6 @@ update()
 df2 = pd.DataFrame(catalogue_objects)
 cprint("Entry updated successfully", "green")
 print(tabulate(df2, headers=["Title","Author", "Price($)", "Stock"], tablefmt="fancy_grid"))
+
+def blue_input():
+    user_input = input

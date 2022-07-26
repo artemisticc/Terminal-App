@@ -5,6 +5,7 @@ from termcolor import colored, cprint
 from tabulate import tabulate
 from art import *
 import pandas as pd
+from colorama import init
 
 
 catalogue_objects = []
@@ -81,16 +82,18 @@ def _search_author():
 
 def search_catalogue():
     search = ""
-    while search != "Exit":
-        search = search_menu()
-        if search == "Title":
-            _search_title()
-        elif search == "Author":
-            _search_author()
-        elif search == "Exit":
-            continue
-        else:
-            cprint("Not a valid option, try again.", 'red', attrs=['bold'], file=sys.stderr)
+    try:
+        while search != "Exit":
+            search = search_menu()
+            print(search)
+            if search == "Title":
+                _search_title()
+            elif search == "Author":
+                _search_author()
+            elif search == "Exit":
+                continue
+    except TypeError:
+        cprint("Returning to main menu.", 'magenta', attrs=['bold'], file=sys.stderr)
 
 
 def create_entry():
@@ -111,49 +114,70 @@ def create_entry():
 def remove_entry():
     catalogue_list()
     question = colored("Select the entry to remove by typing in the corresponding number in the left-most column: ", 'blue', attrs=['bold'])
-    remove_var = int(input(question))
-    try:
-        del catalogue_objects[remove_var]
-        cprint("Entry has successfully been removed.", "green", attrs=['bold'], file=sys.stderr)
-        catalogue_list()
-    except IndexError: 
-        cprint("Number not found, nothing has been removed.", 'magenta', attrs=['bold'], file=sys.stderr)
-
+    while True:
+        try:
+            remove_var = int(input(question))
+            del catalogue_objects[remove_var]
+            cprint("Entry has successfully been removed.", "green", attrs=['bold'], file=sys.stderr)
+            catalogue_list()
+        except IndexError: 
+            cprint("Number not found, nothing has been removed.\nLeave space blank if you wish to return to the main menu.", 'magenta', attrs=['bold'], file=sys.stderr)
+        except (ValueError, TypeError): 
+            cprint("Returning to main menu.", 'magenta', attrs=['bold'], file=sys.stderr)
+            break
 
 
 def modify_entry():
     catalogue_list()
     question = colored("Select the entry to edit by typing in the corresponding number in the left-most column: ", 'blue', attrs=['bold'])
-    edit_var = int(input(question))
-    try:
-        modify = ""
-        while modify != "Exit":
-            modify = modify_menu()
-            if modify == "Title":
-                print("test")
-            elif modify == "Author":
-                pass
-            elif modify == "Price":
-                pass
-            elif modify == "Stock Count":
-                pass
-            elif modify == "Exit":
-                continue
-            else:
-                cprint("Not a valid option, try again", 'red', attrs=['bold'], file=sys.stderr)
-    except IndexError: 
-        cprint("Number not found, unable to edit.", 'magenta', attrs=['bold'], file=sys.stderr)
+    while True:
+        try:
+            edit_var = int(input(question))
+            print(catalogue_objects[edit_var])
+            modify = ""
+            while modify != "Exit":
+                modify = modify_menu()
+                print(modify)
+                if modify == "Title":
+                    title_var = input("Updated title: ")
+                    update_title = {"title": title_var}
+                    catalogue_objects[edit_var].update(update_title)
+                elif modify == "Author":
+                    author_var = input("Updated author: ")
+                    update_author = {"author": author_var}
+                    catalogue_objects[edit_var].update(update_author)
+                elif modify == "Price":
+                    price_var = input("Updated price($): ")
+                    update_price = {"price": price_var}
+                    catalogue_objects[edit_var].update(update_price)
+                elif modify == "Stock Count":
+                    stock_var = input("Updated stock: ")
+                    update_stock = {"stock_count": stock_var}
+                    catalogue_objects[edit_var].update(update_stock)
+                elif modify == "Exit":
+                    catalogue_list()
+                    continue
+                else:
+                    cprint("Not a valid option, try again", 'red', attrs=['bold'], file=sys.stderr)
+        except IndexError: 
+            cprint("Number not found, unable to edit.\nLeave space blank if you wish to return to the main menu.", 'magenta', attrs=['bold'], file=sys.stderr)
+        except (ValueError, TypeError): 
+            cprint("Returning to main menu.", 'magenta', attrs=['bold'], file=sys.stderr)
+            break
 
 
 # main program
 
 def main_program():
+    init()
     tprint("welcome")
     cprint("Please remember that everything is case sensitive!", "red", attrs=["underline"], file=sys.stderr)
     print("")
     option = ""
-    while option != "Exit":
+    try:
+        while option != "Exit":
             option = main_menu()
+            print(option)
             if option == "Catalogue list":
                 catalogue_list()
             elif option == "Search catalogue":
@@ -168,8 +192,13 @@ def main_program():
                 continue
             else:
                 cprint("Not a valid option, try again", 'red', attrs=['bold'], file=sys.stderr)
+    except TypeError:
+        tprint("goodbye")
+        exit()
+    tprint("goodbye")
+
 
 main_program()
-tprint("goodbye")
+
 # _index_list()
 # print(_index_list())

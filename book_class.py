@@ -31,7 +31,7 @@ class Book():
             while True:
                     try:
                         self.price = float(input("Price($): "))
-                    except(ValueError): 
+                    except ValueError: 
                         cprint("This needs to be a number.", 'red', attrs=['bold'], file=sys.stderr)
                     else:
                         break
@@ -41,7 +41,7 @@ class Book():
             while True:
                 try:
                     self.stock_count = int(input("Stock count: "))
-                except(ValueError): 
+                except ValueError: 
                     cprint("This needs to be a number.", 'red', attrs=['bold'], file=sys.stderr)
                 else:
                     break
