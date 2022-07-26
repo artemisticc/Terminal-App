@@ -34,6 +34,8 @@ def search_menu():
     option = modify_options[menu_entry_index]
     return option
 
+def _return():
+    cprint("Returning to main menu.", 'magenta', attrs=['bold'], file=sys.stderr)
 
 # functions for main features
 def catalogue_list():
@@ -42,7 +44,7 @@ def catalogue_list():
     print(tabulate(df, headers=["Title","Author", "Price($)", "Stock"], tablefmt="fancy_grid"))
 
 def _search_title():
-    question = colored("What title are you looking for? ", 'blue')
+    question = colored("What title are you looking for? ", 'blue', attrs=["bold"])
     title_var = input(question)
     n = 0
     x = list(filter(lambda item: item["title"] == title_var, catalogue_objects))
@@ -93,7 +95,7 @@ def search_catalogue():
             elif search == "Exit":
                 continue
     except TypeError:
-        cprint("Returning to main menu.", 'magenta', attrs=['bold'], file=sys.stderr)
+        _return()
 
 
 def create_entry():
@@ -106,7 +108,7 @@ def create_entry():
             break
 
     for item in range(how_many):
-            print("Enter details for Book {}".format(item+1))
+            cprint("Enter details for Book {}".format(item+1), "blue", attrs=["bold"])
             b = Book()
             catalogue_objects.append(b.__dict__)
             print("Entry created. \n", b.__dict__)
@@ -123,7 +125,7 @@ def remove_entry():
         except IndexError: 
             cprint("Number not found, nothing has been removed.\nLeave space blank if you wish to return to the main menu.", 'magenta', attrs=['bold'], file=sys.stderr)
         except (ValueError, TypeError): 
-            cprint("Returning to main menu.", 'magenta', attrs=['bold'], file=sys.stderr)
+            _return()
             break
 
 
@@ -162,7 +164,7 @@ def modify_entry():
         except IndexError: 
             cprint("Number not found, unable to edit.\nLeave space blank if you wish to return to the main menu.", 'magenta', attrs=['bold'], file=sys.stderr)
         except (ValueError, TypeError): 
-            cprint("Returning to main menu.", 'magenta', attrs=['bold'], file=sys.stderr)
+            _return()
             break
 
 
@@ -190,8 +192,6 @@ def main_program():
                 modify_entry()
             elif option == "Exit":
                 continue
-            else:
-                cprint("Not a valid option, try again", 'red', attrs=['bold'], file=sys.stderr)
     except TypeError:
         tprint("goodbye")
         exit()
