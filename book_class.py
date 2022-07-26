@@ -1,12 +1,13 @@
 import sys
-from termcolor import cprint
+from termcolor import cprint, colored
 
 class Book():
     def __init__(self, title = None, author = None, price = None, stock_count = None):
         if not title:
             while True:
                 try:
-                    self.title = input("Title: ")
+                    x = colored("Title: ", 'grey', attrs=['bold'])
+                    self.title = input(x)
                     if not self.title:
                         raise ValueError("empty")
                 except ValueError: 
@@ -18,7 +19,8 @@ class Book():
         if not author:
             while True:
                 try:
-                    self.author = input("Author: ")
+                    x = colored("Author: ", 'grey', attrs=['bold'])
+                    self.author = input(x)
                     if not self.author:
                         raise ValueError("empty")
                 except ValueError: 
@@ -30,7 +32,8 @@ class Book():
         if not price:
             while True:
                     try:
-                        self.price = float(input("Price($): "))
+                        x = colored("Price($): ", 'grey', attrs=['bold'])
+                        self.price = float(input(x))
                     except ValueError: 
                         cprint("This needs to be a number.", 'red', attrs=['bold'], file=sys.stderr)
                     else:
@@ -40,7 +43,8 @@ class Book():
         if not stock_count:
             while True:
                 try:
-                    self.stock_count = int(input("Stock count: "))
+                    x = colored("Stock count: ", 'grey', attrs=['bold'])
+                    self.stock_count = int(input(x))
                 except ValueError: 
                     cprint("This needs to be a number.", 'red', attrs=['bold'], file=sys.stderr)
                 else:
