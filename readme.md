@@ -2,7 +2,8 @@ This is where info on how to use this is gonna go.
 
 ## Installation
 1. You will need python.
-2. https://github.com/artemisticc/Terminal-App
+2. Download repo as a zip:
+https://github.com/artemisticc/Terminal-App
 
 
 ## Dependencies
@@ -28,6 +29,5 @@ The features of this app include:
 
 ## Implementation plan
 
-I decideed to use Trello for keeping track of the development of my app. Due to reasons outlined in my support plan, I was unable to adhere to most deadlines, but my features were still created and implemented according to this implementation plan.
+I decided to use Trello for keeping track of the development of my app. Due to reasons outlined in my support plan, I was unable to adhere to most deadlines, but my features were still created and implemented according to my plan outline on the project management website.
 
-All testing for this program was done manually, by copying thee chunks of code I was testing to another file and testing it from there. When it was working in the test file, I would move it to the main file

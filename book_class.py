@@ -51,4 +51,3 @@ class Book():
                     break
         else:
             self.stock_count = stock_count
-
