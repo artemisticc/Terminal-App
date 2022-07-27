@@ -9,36 +9,35 @@ from colorama import init
 
 catalogue_objects = []
 
+# menus
 def main_menu():
-    cprint("What would you like to do?", "blue", attrs=['bold'])
+    cprint("What would you like to do?", "blue", attrs=["bold"])
     options = ["Catalogue list", "Search catalogue", "Create entry", "Remove entry", "Modify entry", "Exit"]
     terminal_menu = TerminalMenu(options)
     menu_entry_index = terminal_menu.show()
     option = options[menu_entry_index]
     return option
 
-def modify_menu():
-    cprint("What would you like to modify about this entry?", "blue", attrs=['bold'])
-    modify_options = ["Title", "Author", "Price", "Stock Count", "Exit"]
-    terminal_menu = TerminalMenu(modify_options)
-    menu_entry_index = terminal_menu.show()
-    option = modify_options[menu_entry_index]
-    return option
-
 def search_menu():
-    cprint("What would you like to search by?", "blue", attrs=['bold'])
+    cprint("What would you like to search by?", "blue", attrs=["bold"])
     modify_options = ["Title", "Author", "Exit"]
     terminal_menu = TerminalMenu(modify_options)
     menu_entry_index = terminal_menu.show()
     option = modify_options[menu_entry_index]
     return option
 
-def _failed(key1):
-    cprint("Failed to update " + key1 + ".", 'red', attrs=['bold'])
+def modify_menu():
+    cprint("What would you like to modify about this entry?", "blue", attrs=["bold"])
+    modify_options = ["Title", "Author", "Price", "Stock Count", "Exit"]
+    terminal_menu = TerminalMenu(modify_options)
+    menu_entry_index = terminal_menu.show()
+    option = modify_options[menu_entry_index]
+    return option
 
+# program functions
 def _update(key1, key2, item_index, type=str,):
         try:
-            a = colored("Updated " + key1 + ": ", 'grey', attrs=['bold'])
+            a = colored("Updated " + key1 + ": ", "grey", attrs=["bold"])
             x = type(input(a))
             if not x:
                 _failed(key1)
@@ -51,14 +50,17 @@ def _update(key1, key2, item_index, type=str,):
             return
 
 def _return():
-    cprint("Returning to main menu.", 'magenta', attrs=['bold'])
+    cprint("Returning to main menu.", "magenta", attrs=["bold"])
+
+def _failed(key1):
+    cprint("Failed to update " + key1 + ".", "red", attrs=["bold"])
 
 def _print_df(var):
     df = pd.DataFrame(var)
     print(tabulate(df, headers=["Title","Author", "Price($)", "Stock"], tablefmt="fancy_grid"))
 
 def _search_title():
-    question = colored("What title are you looking for? ", 'blue', attrs=["bold"])
+    question = colored("What title are you looking for? ", "blue", attrs=["bold"])
     title_var = input(question)
     n = 0
     x = list(filter(lambda item: item["title"] == title_var, catalogue_objects))
@@ -66,19 +68,19 @@ def _search_title():
         if item["title"] == title_var:
             n += 1
     if n == 1:
-        cprint("There is " + str(n) + " book with this title in the system.", 'green', attrs=['bold'])
+        cprint("There is " + str(n) + " book with this title in the system.", "green", attrs=["bold"])
         _print_df(x)
         return n
     elif n > 1:
-        cprint("There are " + str(n) + " books with this title in the system.", 'green', attrs=['bold'])
+        cprint("There are " + str(n) + " books with this title in the system.", "green", attrs=["bold"])
         _print_df(x)
         return n
     else:
-        cprint("There are no books with this title in the system.", 'magenta', attrs=['bold'])
+        cprint("There are no books with this title in the system.", "magenta", attrs=["bold"])
         return n
 
 def _search_author():
-    question = colored("What author are you looking for? ", 'blue', attrs=['bold'])
+    question = colored("What author are you looking for? ", "blue", attrs=["bold"])
     author_var = input(question)
     n = 0
     x = list(filter(lambda item: item["author"] == author_var, catalogue_objects))
@@ -86,20 +88,19 @@ def _search_author():
         if item["author"] == author_var:
             n += 1
     if n == 1:
-        cprint("There is " + str(n) + " book with this author in the system.", 'green', attrs=['bold'])
+        cprint("There is " + str(n) + " book with this author in the system.", "green", attrs=["bold"])
         _print_df(x)
     elif n > 1:
-        cprint("There are " + str(n) + " books with this title in the system.", 'green', attrs=['bold'])
+        cprint("There are " + str(n) + " books with this title in the system.", "green", attrs=["bold"])
         _print_df(x)
     else:
-        cprint("There are no books with this author in the system.", 'magenta', attrs=['bold']) 
+        cprint("There are no books with this author in the system.", "magenta", attrs=["bold"]) 
 
 
-# functions for main features
+# main feature functions
 def catalogue_list():
     tprint("catalogue")
     _print_df(catalogue_objects)
-
 
 def search_catalogue():
     search = ""
@@ -116,17 +117,15 @@ def search_catalogue():
     except TypeError:
         _return()
 
-
 def create_entry():
     while True:
         try:
             question = colored("How many books would you like to add? ", "blue", attrs=["bold"])
             how_many = int(input(question))
         except ValueError:
-            cprint("Your answer must be a whole number.", 'red', attrs=['bold'])
+            cprint("Your answer must be a whole number.", "red", attrs=["bold"])
         else:
             break
-
     for item in range(how_many):
             cprint("Enter details for Book {}".format(item+1), "magenta", attrs=["bold"])
             b = Book()
@@ -136,24 +135,23 @@ def create_entry():
 
 def remove_entry():
     catalogue_list()
-    question = colored("Leaving this section blank will return you to the main menu.\nSelect the entry to remove by typing in the corresponding number in the left-most column: ", 'blue', attrs=['bold'])
+    question = colored("Leaving this section blank will return you to the main menu.\nSelect the entry to remove by typing in the corresponding number in the left-most column: ", "blue", attrs=["bold"])
     while True:
         try:
             remove_var = int(input(question))
             del catalogue_objects[remove_var]
-            cprint("Entry has successfully been removed.", "green", attrs=['bold'])
+            cprint("Entry has successfully been removed.", "green", attrs=["bold"])
             catalogue_list()
             break
         except IndexError: 
-            cprint("Number not found, nothing has been removed.\nLeave space blank if you wish to return to the main menu.", 'magenta', attrs=['bold'])
+            cprint("Number not found, nothing has been removed.\nLeave space blank if you wish to return to the main menu.", "magenta", attrs=["bold"])
         except (ValueError, TypeError): 
             _return()
             break
 
-
 def modify_entry():
     catalogue_list()
-    question = colored("Leaving this section blank will return you to the main menu.\nSelect the entry to edit by typing in the corresponding number in the left-most column: ", 'blue', attrs=['bold'])
+    question = colored("Leaving this section blank will return you to the main menu.\nSelect the entry to edit by typing in the corresponding number in the left-most column: ", "blue", attrs=["bold"])
     while True:
         try:
             edit_var = int(input(question))
@@ -178,16 +176,15 @@ def modify_entry():
                     catalogue_list()
                     continue
                 else:
-                    cprint("Not a valid option, try again", 'red', attrs=['bold'])
+                    cprint("Not a valid option, try again", "red", attrs=["bold"])
         except IndexError: 
-            cprint("Number not found, unable to edit.\nLeave space blank if you wish to return to the main menu.", 'magenta', attrs=['bold'])
+            cprint("Number not found, unable to edit.\nLeave space blank if you wish to return to the main menu.", "magenta", attrs=["bold"])
         except (ValueError, TypeError): 
             _return()
             break
 
 
 # main program
-
 def main_program():
     init()
     tprint("welcome")
@@ -215,8 +212,5 @@ def main_program():
         exit()
     tprint("goodbye")
 
-
+# run main program
 main_program()
-
-# _index_list()
-# print(_index_list())
