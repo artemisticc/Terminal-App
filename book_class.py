@@ -52,15 +52,3 @@ class Book():
         else:
             self.stock_count = stock_count
 
-    def get_title(self):
-        return self.title
-
-    def get_author(self):
-        return self.author
-
-    def get_price(self):
-        return self.price
-
-    def get_stock(self):
-        return self.stock_count
-
