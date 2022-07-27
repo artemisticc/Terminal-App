@@ -165,6 +165,7 @@ def modify_entry():
                     _print_df([catalogue_objects[edit_var]])
                 elif modify == "Author":
                     _update("author", "author", edit_var)
+                    _print_df([catalogue_objects[edit_var]])
                 elif modify == "Price":
                     _update("price($)", "price", edit_var, float)
                     _print_df([catalogue_objects[edit_var]])
@@ -187,7 +188,6 @@ def modify_entry():
 def main_program():
     init()
     tprint("welcome")
-    cprint("Please remember that everything is case sensitive!", "red", attrs=["underline"])
     print("")
     option = ""
     try:
