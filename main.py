@@ -155,8 +155,7 @@ def modify_entry():
     while True:
         try:
             edit_var = int(input(question))
-            # print(catalogue_objects[edit_var])
-            # _print_df([catalogue_objects[edit_var]])
+            _print_df([catalogue_objects[edit_var]])
             modify = ""
             while modify != "Exit":
                 modify = modify_menu()
