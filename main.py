@@ -144,7 +144,7 @@ def remove_entry():
             catalogue_list()
             break
         except IndexError: 
-            cprint("Number not found, nothing has been removed.\nLeave space blank if you wish to return to the main menu.", "magenta", attrs=["bold"])
+            cprint("Number not found, nothing has been removed.", "magenta", attrs=["bold"])
         except (ValueError, TypeError): 
             _return()
             break
@@ -177,7 +177,7 @@ def modify_entry():
                 else:
                     cprint("Not a valid option, try again", "red", attrs=["bold"])
         except IndexError: 
-            cprint("Number not found, unable to edit.\nLeave space blank if you wish to return to the main menu.", "magenta", attrs=["bold"])
+            cprint("Number not found, unable to edit.", "magenta", attrs=["bold"])
         except (ValueError, TypeError): 
             _return()
             break
