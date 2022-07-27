@@ -1,5 +1,3 @@
-This is where info on how to use this is gonna go.
-
 ## Installation
 1. You will need python 3.8 or higher. If you don't already have it, you can find that [here](https://www.python.org/).
 2. Clone the app to your home directory
