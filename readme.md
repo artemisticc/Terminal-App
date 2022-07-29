@@ -39,7 +39,7 @@ This program was created to be run on a linux system and, as such, will be best 
 
 ## User guide/Features:
 
-This application was made with the intention of using it as an inventory handler (or catalogue) for a 
+This application was made with the intention of using it as an inventory handler (or catalogue) for a bookstore.
 The features of this app include:
 1. **Selectable menus** - you can navigate to what you would like to do by using the up & down arrows on your keyboard. Pressing enter confirms your selection. You can exit menus (or the program, if in the main menu) by either pressing escape or selecting Exit.
 2. **Display books in catalogue** - selecting the catalogue list displays all the entries within the catalogue in a neat table. An empty table will be displayed if there are no entries.
