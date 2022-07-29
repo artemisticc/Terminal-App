@@ -52,7 +52,7 @@ The features of this app include:
 
 I decided to use Trello for keeping track of the development of my app. Due to reasons outlined in my support plan, I was unable to adhere to most deadlines, but my features were still created and implemented according to my plan outline on the project management website.
 
-![trello screenshot 1](.ss1.png)
+![trello screenshot 1](./ss1.png)
 ![trello screenshot 2](./ss2.png)
 ![trello screenshot 3](./ss3.png)
 ![trello screenshot 4](./ss4.png)
